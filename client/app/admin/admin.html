@@ -1,0 +1,40 @@
+<div flex layout="column" class="admin">
+    <div flex="10">
+        <md-input-container>
+            <label>Filter</label>
+            <md-select ng-model="filterBy">
+                <md-option ng-value="">None</md-option>
+                <md-option ng-repeat="filter in filterTypes" ng-value="filter">{{filter}}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <input placeholder="Search Term" type="text" ng-model="searchTerm">
+        </md-input-container>
+        <md-button ng-click="search()">Search</md-button>
+    </div>
+    <md-list flex>
+        <md-list-item ng-repeat="post in posts | orderBy: '-date' track by post._id" flex>
+            <md-card layout-padding class="post-card">
+                <md-card-header-text layout="column">
+                    <span class="md-title">{{post.author}}</span>
+                    <span class="md-subhead">{{post.date | amCalendar}}</span>
+                </md-card-header-text>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{post.title}}</span>
+                        <span class="md-subhead">{{post.genre}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        {{post.content}}
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="editPost(post)">Edit</md-button>
+                    <md-button ng-click="deletePost(post)">Delete</md-button>
+                </md-card-actions>
+            </md-card>
+        </md-list-item>
+    </md-list>
+</div>

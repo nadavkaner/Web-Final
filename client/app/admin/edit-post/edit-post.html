@@ -1,0 +1,32 @@
+<md-dialog class="dialog">
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+            <h2>Edit an existing new post</h2>
+            <span flex></span>
+            <md-button class="md-icon-button md-accent" ng-click="closeModal()">
+                <i class="mdi mdi-close mdi-24px"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form>
+                <div layout="row">
+                <md-input-container>
+                    <input placeholder="author" required maxlength="35" md-maxlength="35" type="text" ng-model="post.author">
+                </md-input-container>
+                <md-input-container>
+                    <input placeholder="title" required maxlength="20" md-maxlength="20" type="text" ng-model="post.title">
+                </md-input-container>
+                </div>
+                <md-input-container>
+                    <textarea md-maxlength="100" maxlength="100" required placeholder="content" type="text" ng-model="post.content"></textarea>
+                </md-input-container>
+            </form>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="closeModal()">Cancel</md-button>
+        <md-button class="md-primary" ng-click="editPost()">Submit</md-button>
+    </md-dialog-actions>
+</md-dialog>
