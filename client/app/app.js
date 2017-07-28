@@ -4,35 +4,25 @@ import angularMaterial from 'angular-material';
 import uiRouter from 'angular-ui-router';
 import ngMap from 'ngmap';
 
-import advancedServices from './services';
-import advancedControllers from './controllers';
+import services from './services';
+import controllers from './controllers';
 
 import 'mdi/css/materialdesignicons.css';
 import 'angular-material/angular-material.css';
 import './style.less';
 
-angular.module('advanced', [
+angular.module('ipoke', [
   angularMaterial,
   uiRouter,
   ngMap,
   'angularMoment',
   'ngAnimate',
-  advancedControllers,
-  advancedServices
+  controllers,
+  services
 ])
     .config(($urlRouterProvider, $locationProvider, $mdThemingProvider) => {
       $mdThemingProvider.theme('default')
-          .primaryPalette('blue', {
-            default: '500'
-          })
-          .warnPalette('blue-grey', {
-            default: '900',
-            'hue-1': '50'
-          })
-          .accentPalette('amber', {
-            default: '400',
-            'hue-1': '600'
-          });
+          .dark();
 
       $urlRouterProvider
           .otherwise('/');

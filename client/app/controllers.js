@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
 // need to add to the DI the advanced.filters and advanced.directives
 
-angular.module(MODULE_NAME, ['advanced.services']);
+angular.module(MODULE_NAME, ['ipoke.services']);
 
 require('./shell/shell');
 require('./main/main');

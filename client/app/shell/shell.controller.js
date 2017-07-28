@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
     .controller('shell', ($scope, Auth) => {

@@ -1,7 +1,7 @@
 import angular from 'angular';
 
-angular.module('advanced.services')
-    .factory('Post', $resource => $resource('/api/posts/:id/:controller', {
+angular.module('ipoke.services')
+    .factory('Poke', $resource => $resource('/api/pokes/:id/:controller', {
       id: '@_id'
     }, {
       update: {

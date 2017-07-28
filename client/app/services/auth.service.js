@@ -1,21 +1,21 @@
 import angular from 'angular';
 
-angular.module('advanced.services')
+angular.module('ipoke.services')
     .factory('Auth', (User, $http) => {
       let currentUser = null;
 
       return {
-        login ({username, password}) {
+        login({username, password}) {
           return $http.post('/api/users/login', {username, password})
-                    .then(response => {
-                      console.log(response);
-                      localStorage.setItem('token', response.data);
-                      currentUser = User.get({id: response.data});
+              .then(response => {
+                console.log(response);
+                localStorage.setItem('token', response.data);
+                currentUser = User.get({id: response.data});
 
-                      return response;
-                    });
+                return response;
+              });
         },
-        getCurrentUser () {
+        getCurrentUser() {
           return currentUser;
         }
       };

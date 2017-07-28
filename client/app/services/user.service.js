@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-angular.module('advanced.services')
+angular.module('ipoke.services')
     .factory('User', $resource => $resource('/api/users/:id/:controller', {
       id: '@_id'
     }, {

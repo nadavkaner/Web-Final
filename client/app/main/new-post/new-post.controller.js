@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
-angular.module(MODULE_NAME).controller('newPost', ($scope, Post, $mdDialog) => {
+angular.module(MODULE_NAME).controller('newPost', ($scope, Poke, $mdDialog) => {
   $scope.post = {
     content: '',
     title: '',
@@ -13,7 +13,7 @@ angular.module(MODULE_NAME).controller('newPost', ($scope, Post, $mdDialog) => {
   $scope.savePost = () => {
     $scope.post.date = new Date();
 
-    Post.save($scope.post).$promise
+    Poke.save($scope.post).$promise
             .then(post => $mdDialog.hide(post));
   };
 

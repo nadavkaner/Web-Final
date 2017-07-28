@@ -1,10 +1,10 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
-angular.module(MODULE_NAME).controller('admin', ($scope, Post, $mdDialog, $mdToast) => {
-  $scope.posts = Post.query();
+angular.module(MODULE_NAME).controller('admin', ($scope, Poke, $mdDialog, $mdToast) => {
+  $scope.posts = Poke.query();
 
   $scope.searchTerm = '';
   $scope.filterBy = '';
@@ -19,7 +19,7 @@ angular.module(MODULE_NAME).controller('admin', ($scope, Post, $mdDialog, $mdToa
       term = '';
     }
 
-    $scope.posts = Post.query({term, filter});
+    $scope.posts = Poke.query({term, filter});
   };
 
   $scope.editPost = post => {
@@ -51,7 +51,7 @@ angular.module(MODULE_NAME).controller('admin', ($scope, Post, $mdDialog, $mdToa
   };
 
   $scope.deletePost = post => {
-    Post.delete({id: post._id}).$promise.then(() => {
+    Poke.delete({id: post._id}).$promise.then(() => {
       $scope.posts = _.filter($scope.posts, p => p._id !== post._id);
 
       return $mdToast.show(

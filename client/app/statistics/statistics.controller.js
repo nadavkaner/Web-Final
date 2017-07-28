@@ -1,15 +1,15 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
-    .controller('statistics', ($scope, Post) => {
-      Post.group().$promise.then(data => {
+    .controller('statistics', ($scope, Poke) => {
+      Poke.group().$promise.then(data => {
         $scope.groups = data;
         createPopularUsersGraph(data, 'popular-genre-graph');
       });
 
-      Post.author().$promise.then(data => {
+      Poke.author().$promise.then(data => {
         $scope.authors = data;
         createPopularUsersGraph(data, 'popular-author-graph');
       });

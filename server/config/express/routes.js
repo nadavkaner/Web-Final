@@ -1,11 +1,11 @@
 import userRoute from '../../api/user';
-import postRoute from '../../api/poke';
+import pokeRoute from '../../api/poke';
 import createError from 'http-errors';
 import {join} from 'fs';
 
 export default app => {
   app.use('/api/users', userRoute);
-  app.use('/api/posts', postRoute);
+  app.use('/api/pokes', pokeRoute);
 
     // All undefined api routes should return a 404
   app.route('/:url(api/*)')

@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
-angular.module(MODULE_NAME).controller('editPost', ($scope, Post, $mdDialog, $mdToast, post) => {
+angular.module(MODULE_NAME).controller('editPost', ($scope, Poke, $mdDialog, $mdToast, post) => {
   $scope.post = {
     author: post.author,
     content: post.content,
@@ -10,7 +10,7 @@ angular.module(MODULE_NAME).controller('editPost', ($scope, Post, $mdDialog, $md
   };
 
   $scope.editPost = () => {
-    Post.update({id: post._id}, $scope.post).$promise
+    Poke.update({id: post._id}, $scope.post).$promise
             .then(result => $mdDialog.hide(result));
   };
 

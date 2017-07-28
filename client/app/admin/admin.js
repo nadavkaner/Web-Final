@@ -4,7 +4,7 @@ import './admin.less';
 import './edit-post/edit-post.controller';
 import './edit-post/edit-post.less';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
     .config($stateProvider => {

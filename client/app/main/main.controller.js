@@ -1,9 +1,9 @@
 import angular from 'angular';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
-angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
-  $scope.posts = Post.query();
+angular.module(MODULE_NAME).controller('main', ($scope, Poke, $mdDialog) => {
+  $scope.posts = Poke.query();
   $scope.searchTerm = '';
   $scope.filterBy = '';
 
@@ -17,7 +17,7 @@ angular.module(MODULE_NAME).controller('main', ($scope, Post, $mdDialog) => {
       term = '';
     }
 
-    $scope.posts = Post.query({term, filter});
+    $scope.posts = Poke.query({term, filter});
   };
 
   $scope.openNewPostModal = () => {

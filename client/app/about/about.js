@@ -2,7 +2,7 @@ import angular from 'angular';
 import './about.controller';
 import './about.less';
 
-const MODULE_NAME = 'advanced.controllers';
+const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
     .config($stateProvider => {
