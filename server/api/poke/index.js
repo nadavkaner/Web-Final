@@ -1,5 +1,5 @@
 import {AsyncRouter} from 'express-async-router';
-import * as controller from './post.controller';
+import * as controller from './poke.controller';
 import objectId from 'express-param-objectid';
 import paginate from 'express-paginate';
 

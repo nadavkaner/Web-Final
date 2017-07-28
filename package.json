@@ -5,7 +5,6 @@
   "main": "server/app.js",
   "scripts": {
     "test": "npm run lint",
-    "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "babel": "babel server -d dist/server -s",
     "build": "rimraf dist && npm run babel && webpack -p && ncp package.json dist/package.json",
@@ -16,12 +15,6 @@
     "client-dev": "webpack-dev-server --open",
     "server-dev": "nodemon --watch server --exec \"babel-node\" server/app.js",
     "prod": "npm run build && nodemon dist/server/app.js"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
   },
   "repository": {
     "type": "git",

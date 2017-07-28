@@ -1,5 +1,5 @@
 import userRoute from '../../api/user';
-import postRoute from '../../api/post';
+import postRoute from '../../api/poke';
 import createError from 'http-errors';
 import {join} from 'fs';
 

@@ -17,6 +17,14 @@ const UserSchema = new Schema({
   admin: {
     type: Boolean,
     default: false
+  },
+  avgReactionTime: {
+    type: Number,
+    default: 0
+  },
+  numberOfPokes: {
+    type: Number,
+    default: 0
   }
 });
 

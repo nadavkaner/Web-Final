@@ -1,33 +1,29 @@
 import mongoose from 'mongoose';
 import {createSeedModel} from 'mongoose-plugin-seed';
-import seed from './post.seed';
+import seed from './poke.seed';
 import mongoosePaginate from 'mongoose-paginate';
 
 const {Schema} = mongoose;
 
-const PostSchema = new Schema({
-  content: {
+const PokeSchema = new Schema({
+  userSent: {
     type: String,
     required: true
   },
-  title: {
+  userReceived: {
     type: String,
     required: true
   },
-  genre: {
-    type: String,
-    required: true
-  },
-  date: {
+  lastPokeTime: {
     type: Date,
     required: true
   },
-  author: {
-    type: String,
-    required: true
+  numberOfPokes: {
+    type: Number,
+    default: 0
   }
 });
 
-PostSchema.plugin(mongoosePaginate);
+PokeSchema.plugin(mongoosePaginate);
 
-export default createSeedModel('Post', PostSchema, seed);
+export default createSeedModel('Poke', PokeSchema, seed);

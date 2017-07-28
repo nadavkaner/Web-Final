@@ -5,7 +5,6 @@ import http from 'http';
 import express from 'express';
 import expressConfig from './config/express';
 
-
 const mongoInitPromise = mongooseConfig(mongoose);
 
 mongoose.connect(process.env.MONGO_URI);
