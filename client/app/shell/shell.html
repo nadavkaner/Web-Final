@@ -13,15 +13,7 @@
                 <md-button ui-sref="shell.admin" ng-if="isUserAdmin()">Admin panel</md-button>
                 <div ng-show="isLoggedOn()">
                     <span>Logged on as {{getUser().username}}</span>
-                </div>
-                <div ng-show="!isLoggedOn()">
-                    <md-input-container>
-                        <input type="text" ng-model="userName" placeholder="username">
-                    </md-input-container>
-                    <md-input-container>
-                        <input type="text" ng-model="password" placeholder="pass">
-                    </md-input-container>
-                    <md-button ng-click="login()">Login</md-button>
+                    <md-button ng-click="logout()">Logout</md-button>
                 </div>
                 <span flex></span>
                 <footer>
@@ -29,7 +21,7 @@
                 </footer>
             </md-sidenav>
         </nav>
-        <div flex layout="column" ui-view></div>
+        <div flex layout="column" ui-view ng-init="openLogin()"></div>
     </div>
 </div>
 

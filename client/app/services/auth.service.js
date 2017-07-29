@@ -5,9 +5,26 @@ angular.module('ipoke.services')
       let currentUser = null;
 
       return {
+        index()
+        {
+            return $http.get('/api/users')
+        },
+        create({username, password})
+        {
+            return $http.post('/api/users', {username, password})
+                .then(response => {
+                    console.log("register");
+                    console.log(response);
+                    localStorage.setItem('token', response.data);
+                    currentUser = User.get({id: response.data});
+
+                    return response;
+                });
+        },
         login({username, password}) {
           return $http.post('/api/users/login', {username, password})
               .then(response => {
+                console.log("login");
                 console.log(response);
                 localStorage.setItem('token', response.data);
                 currentUser = User.get({id: response.data});
@@ -17,6 +34,9 @@ angular.module('ipoke.services')
         },
         getCurrentUser() {
           return currentUser;
+        },
+        logout(){
+            currentUser = null;
         }
       };
     });
