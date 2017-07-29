@@ -22,6 +22,8 @@ angular.module('ipoke', [
 ])
     .config(($urlRouterProvider, $locationProvider, $mdThemingProvider) => {
       $mdThemingProvider.theme('default')
+          .primaryPalette('light-blue')
+          .accentPalette('orange')
           .dark();
 
       $urlRouterProvider
