@@ -7,7 +7,7 @@
     <div layout="row" flex>
         <nav layout="row" flex="15">
             <md-sidenav md-whiteframe="4" md-is-locked-open="true" class="md-sidenav-right" layout-padding>
-                <div ng-show="isLoggedOn()" layout="row">
+                <div ng-show="isLoggedOn()" layout="row" class="user-card">
                     <span>Hello {{getUser().username}}</span>
                     <md-button ng-click="logout()">Logout</md-button>
                 </div>

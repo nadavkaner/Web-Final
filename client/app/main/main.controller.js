@@ -3,7 +3,8 @@ import angular from 'angular';
 const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME).controller('main', ($scope, Poke, $mdDialog) => {
-  $scope.posts = Poke.query();
+  $scope.pokes = Poke.query();
+  console.log($scope.pokes)
   $scope.searchTerm = '';
   $scope.filterBy = '';
 
@@ -17,7 +18,7 @@ angular.module(MODULE_NAME).controller('main', ($scope, Poke, $mdDialog) => {
       term = '';
     }
 
-    $scope.posts = Poke.query({term, filter});
+    $scope.pokes = Poke.query({term, filter});
   };
 
   $scope.openNewPostModal = () => {
@@ -26,7 +27,7 @@ angular.module(MODULE_NAME).controller('main', ($scope, Poke, $mdDialog) => {
       templateUrl: '/app/main/new-post/new-post.html',
       clickOutsideToClose: false
     }).then(result => {
-      $scope.posts.push(result);
+      $scope.pokes.push(result);
     });
   };
 });
