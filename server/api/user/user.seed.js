@@ -1,25 +1,25 @@
 export default {
   seed() {
     return [{
-      username: 'Admin',
+      username: 'admin',
       password: '123',
       admin: true,
       avgReactionTime: 60,
       numberOfPokes: 666
     }, {
-      username: 'Nadav',
+      username: 'nadav',
       password: '123',
       admin: false,
       avgReactionTime: 404,
       numberOfPokes: 444
     }, {
-      username: 'Mor',
+      username: 'mor',
       password: '123',
       admin: false,
       avgReactionTime: 104,
       numberOfPokes: 111
     }, {
-      username: 'Bar',
+      username: 'bar',
       password: '123',
       admin: false,
       avgReactionTime: 204,

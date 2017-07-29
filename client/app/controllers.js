@@ -8,6 +8,7 @@ angular.module(MODULE_NAME, ['ipoke.services']);
 
 require('./shell/shell');
 require('./main/main');
+require('./users/users');
 require('./admin/admin');
 require('./about/about');
 require('./statistics/statistics');

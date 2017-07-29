@@ -1,0 +1,35 @@
+<div flex layout="column" class="main">
+    <div class="pokes-header" layout="column">
+        <h1> Users </h1>
+        <div layout="row">
+            <md-input-container>
+                <label>Filter</label>
+                <md-select ng-model="filterBy">
+                    <md-option ng-value="">None</md-option>
+                    <md-option ng-repeat="filter in filterTypes" ng-value="filter">{{filter}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <input placeholder="Search Term" type="text" ng-model="searchTerm">
+            </md-input-container>
+            <md-button ng-click="search()">Search</md-button>
+        </div>
+    </div>
+    <md-list flex>
+        <md-list-item ng-repeat="user in users | orderBy: '-date' track by user._id" flex>
+            <md-card layout-padding class="post-card" layout="row">
+                <md-card-header-text layout="column" class="poke-title">
+                    <span class="md-title">{{user.username}}</span>
+                    <span class="md-subhead">{{user.avgReactionTime}}</span>
+                </md-card-header-text>
+                <md-card-content layout="row" flex class="poke-content">
+                    <md-card-content-text layout="column">
+                        <span class="md-subhead">Number Of Pokes</span>
+                        <span class="md-subhead">{{user.numberOfPokes}}</span>
+                    </md-card-content-text>
+                    <md-button class="md-raised md-primary">Poke</md-button>
+                </md-card-content>
+            </md-card>
+        </md-list-item>
+    </md-list>
+</div>
