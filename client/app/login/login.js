@@ -1,6 +1,10 @@
 import angular from 'angular';
 import './login.controller';
 import './login.less';
+import './login/login-popup.controller'
+import './login/login-popup.less'
+import './register/register-popup.controller'
+import './register/register-popup.less'
 
 const MODULE_NAME = 'ipoke.controllers';
 

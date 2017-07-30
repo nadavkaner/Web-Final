@@ -1,0 +1,33 @@
+<md-dialog class="dialog">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCB3FnoRld6K-svsJVoGyqGJTyE9lCG19s&libraries=places"></script>
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+            <h2>Login</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content" layout="column">
+            <form>
+                <div layout="row">
+                    <md-input-container>
+                        <input placeholder="Username" type="text" ng-model="user.username">
+                    </md-input-container>
+                    <md-input-container>
+                        <input placeholder="Password" type="password" ng-model="user.password">
+                    </md-input-container>
+                </div>
+                <div ng-show="isLoginFailed">
+                    Wrong Username or password.
+                </div>
+                <div ng-show="isRegisterFailed">
+                    Username already Exists.
+                </div>
+            </form>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row"  class="username-login-buttons">
+        <md-button class="md-primary" ng-click="openRegister()">Register</md-button>
+        <md-button class="md-raised md-primary" ng-click="login()">login</md-button>
+    </md-dialog-actions>
+</md-dialog>

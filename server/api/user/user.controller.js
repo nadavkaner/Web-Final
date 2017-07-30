@@ -36,7 +36,7 @@ export function update() {
   return null;
 }
 
-export function create({body: {username, password}}) {
+export function create({body: {username, password, location}}) {
   let userNameLowCase = getLowerCaseName(username);
   return User.findOne({username: userNameLowCase})
       .then(user => {
@@ -47,6 +47,7 @@ export function create({body: {username, password}}) {
         return User.create({
           username: userNameLowCase,
           password: password,
+          location: location,
           admin: false,
           avgReactionTime: 0,
           numberOfPokes: 0

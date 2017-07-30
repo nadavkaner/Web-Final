@@ -10,6 +10,7 @@ angular.module(MODULE_NAME)
       };
 
     $scope.getUser = () => Auth.getCurrentUser();
+    console.log($scope.getUser());
 
     $scope.isLoggedOn = () => {
       return Auth.getCurrentUser();

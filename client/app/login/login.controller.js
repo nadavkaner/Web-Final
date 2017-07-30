@@ -8,27 +8,16 @@ angular.module(MODULE_NAME).controller('login', ($scope, Poke, $state, $mdDialog
     password: ''
   };
 
-  $scope.login = () => {
-    const loginTask = Auth.login({username: $scope.user.username, password: $scope.user.password});
-    loginTask.finally(() => {
-        if (Auth.getCurrentUser()) {
-          $state.go('shell.main');
-        } else {
-          $scope.isLoginFailed = true;
-          $scope.isRegisterFailed = false;
-        }
-      })
-  };
-
-  $scope.register = () => {
-    const registerTask = Auth.create({username: $scope.user.username, password: $scope.user.password});
-    registerTask.finally(() => {
-        if (Auth.getCurrentUser()) {
-          $mdDialog.cancel();
-        } else {
-          $scope.isRegisterFailed = true;
-          $scope.isLoginFailed = false;
-        }
-      })
+  $scope.openLogin = () => {
+    console.log("hlo");
+    if(Auth.getCurrentUser()) return;
+    $mdDialog.show({
+      controller: 'login-popup',
+      templateUrl: '/app/login/login/login-popup.html',
+      clickOutsideToClose: false,
+      escapeToClose: false
+    }).then(result => {
+      $scope.posts.push(result);
+    });
   };
 });

@@ -9,9 +9,9 @@ angular.module('ipoke.services')
         {
             return $http.get('/api/users')
         },
-        create({username, password})
+        create({username, password, location})
         {
-            return $http.post('/api/users', {username, password})
+            return $http.post('/api/users', {username, password, location})
                 .then(response => {
                     console.log("register");
                     console.log(response);

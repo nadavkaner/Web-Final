@@ -25,7 +25,8 @@ const UserSchema = new Schema({
   numberOfPokes: {
     type: Number,
     default: 0
-  }
+  },
+  location: Schema.Types.Mixed
 });
 
 UserSchema.plugin(mongoosePaginate);

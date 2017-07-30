@@ -1,0 +1,37 @@
+<md-dialog class="dialog">
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+            <h2>Login</h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+<form ng-submit="register()" name="registrationForm">
+    <md-dialog-content>
+        <div class="md-dialog-content" layout="column">
+            <div ng-submit="register()">
+                <div layout="column">
+                    <md-input-container>
+                        <input placeholder="Username" type="text" ng-model="user.username" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <input placeholder="Password" type="password" ng-model="user.password" required>
+                    </md-input-container>
+                    <md-input-container id="locationField">
+                        <input id="autocomplete"  type="text"  ng-model="user.location" placeholder="Enter your address" ng-focus="geolocate()" required>
+                    </md-input-container>
+                </div>
+                <div ng-show="isLoginFailed">
+                    Wrong Username or password.
+                </div>
+                <div ng-show="isRegisterFailed">
+                    Username already Exists.
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row"  class="username-login-buttons" >
+        <md-button class="md-primary" ng-click="openLogin()">login</md-button>
+        <md-button class="md-raised md-primary" ng-click="register()" type='submit'>Register</md-button>
+    </md-dialog-actions>
+</form>
+</md-dialog>
