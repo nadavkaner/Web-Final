@@ -3,10 +3,10 @@ import angular from 'angular';
 const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
-    .controller('shell', ($scope, Auth, $mdDialog) => {
+    .controller('shell', ($scope, $state, Auth, $mdDialog) => {
       $scope.logout = () => {
         Auth.logout();
-        $scope.openLogin();
+        $state.go('login');
       };
 
     $scope.getUser = () => Auth.getCurrentUser();
@@ -18,20 +18,6 @@ angular.module(MODULE_NAME)
       $scope.isUserAdmin = () => {
         return Auth.getCurrentUser() && Auth.getCurrentUser().admin;
       };
-
-        $scope.openLogin = () => {
-
-            if(Auth.getCurrentUser()) return;
-            $mdDialog.show({
-                controller: 'login',
-                templateUrl: '/app/shell/login/login.html',
-                clickOutsideToClose: false,
-                escapeToClose: false
-            }).then(result => {
-                $scope.posts.push(result);
-            });
-        };
-        // openLogin();
     });
 
 function createLogoInCanvas() {
