@@ -33,7 +33,8 @@ angular.module('ipoke', [
     })
     .run(($rootScope, $state, amMoment, Auth) => {
       $rootScope.$on('$stateChangeStart', (event, next) => {
-        if (!Auth.getCurrentUser() && next.name != 'login'){
+        if (!Auth.getCurrentUser() && next.name !== 'login'){
+          event.preventDefault();
           $state.go('login');
         }
 
