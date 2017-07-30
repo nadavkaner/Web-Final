@@ -9,7 +9,7 @@ angular.module(MODULE_NAME).controller('login', ($scope, Poke, $state, $mdDialog
   };
 
   $scope.login = () => {
-    const loginTask = Auth.login({username: $scope.user.username, password: $scope.user.password})
+    const loginTask = Auth.login({username: $scope.user.username, password: $scope.user.password});
     loginTask.finally(() => {
         if (Auth.getCurrentUser()) {
           $state.go('shell.main');
@@ -21,7 +21,7 @@ angular.module(MODULE_NAME).controller('login', ($scope, Poke, $state, $mdDialog
   };
 
   $scope.register = () => {
-    const registerTask = Auth.create({username: $scope.user.username, password: $scope.user.password}).$promise
+    const registerTask = Auth.create({username: $scope.user.username, password: $scope.user.password});
     registerTask.finally(() => {
         if (Auth.getCurrentUser()) {
           $mdDialog.cancel();
