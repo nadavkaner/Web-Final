@@ -14,24 +14,21 @@ export function index({query: {term, filter}}) {
 
       return {$or: [pred]};
     });
-  }
+}
 
   return Poke.find(query);
+}
+
+export function getUserPokes({query: {user}}) {
+    return Poke
+        .where('userReceived')
+        .equals(user);
 }
 
 export function getByGenre() {
   return Poke.aggregate([{
     $group: {
       _id: '$genre',
-      count: {$sum: 1}
-    }
-  }]);
-}
-
-export function getByAuthor() {
-  return Poke.aggregate([{
-    $group: {
-      _id: '$author',
       count: {$sum: 1}
     }
   }]);

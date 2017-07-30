@@ -27,12 +27,16 @@ angular.module('ipoke', [
           .dark();
 
       $urlRouterProvider
-          .otherwise('/');
+          .otherwise('/login');
 
       $locationProvider.html5Mode(true);
     })
     .run(($rootScope, $state, amMoment, Auth) => {
       $rootScope.$on('$stateChangeStart', (event, next) => {
+        if (!Auth.getCurrentUser() && next.name != 'login'){
+          $state.go('login');
+        }
+
         if (next.name === 'shell.admin') {
           const user = Auth.getCurrentUser();
 

@@ -51,6 +51,7 @@ export default {
     new HotModuleReplacementPlugin(),
     new ContextReplacementPlugin(/moment[\\]locale$/, /en/)
   ],
+  devtool: 'source-map',
   devServer: {
     port: 9393,
     hot: true,

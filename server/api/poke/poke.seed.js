@@ -15,6 +15,16 @@ export default {
       userReceived: 'Bar',
       lastPokeTime: Date.now(),
       numberOfPokes: 105
+    }, {
+        userSent: 'Mor',
+        userReceived: 'Nadav',
+        lastPokeTime: Date.now(),
+        numberOfPokes: 333
+    }, {
+        userSent: 'Bar',
+        userReceived: 'Nadav',
+        lastPokeTime: Date.now(),
+        numberOfPokes: 666
     }];
   }
 };
