@@ -2,7 +2,10 @@ import angular from 'angular';
 
 const MODULE_NAME = 'ipoke.controllers';
 
-angular.module(MODULE_NAME).controller('about', ($scope, $http) => {
+angular.module(MODULE_NAME).controller('about', ($scope, $http, Auth) => {
+  Auth.index().then(response => {
+    $scope.users = response.data;
+  });
   // const canvas = document.getElementById('canvas');
   // const ctx = canvas.getContext('2d');
   // let radius = canvas.height / 2;
