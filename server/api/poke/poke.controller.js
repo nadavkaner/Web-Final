@@ -1,4 +1,5 @@
 import Poke from './poke.model';
+import User from '../user/user.model';
 import _ from 'lodash';
 import empty from 'http-reject-empty';
 
@@ -19,12 +20,6 @@ export function index({query: {term, filter}}) {
   return Poke.find(query);
 }
 
-export function getUserPokes({query: {user}}) {
-    return Poke
-        .where('userReceived')
-        .equals(user);
-}
-
 export function getByGenre() {
   return Poke.aggregate([{
     $group: {
@@ -32,6 +27,25 @@ export function getByGenre() {
       count: {$sum: 1}
     }
   }]);
+}
+
+export function suggestedPokes({query: {username}}) {
+  return Poke.find({ $or: [{'userReceived': username}, {'userSent': username}] })
+    .select('userReceived userSent')
+    .then(pokes => {
+      const distinct = [...new Set(pokes.reduce((arr, val) => {
+        arr.push(val.userReceived);
+        arr.push(val.userSent);
+        return arr;
+      }, []))];
+
+      const promise = User.find({ $and: [{'username': {$nin: distinct }}, {'admin': false}] }).exec();
+      promise.then(users => {
+        console.log(users);
+      });
+      return promise;
+
+    });
 }
 
 export function get({params: {id}}) {

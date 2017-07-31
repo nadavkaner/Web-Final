@@ -1,30 +1,20 @@
 export default {
   seed() {
     return [{
-      userSent: 'Nadav',
-      userReceived: 'Mor',
+      userSent: 'nadav',
+      userReceived: 'mor',
       lastPokeTime: Date.now(),
-      numberOfPokes: 69
+      numberOfPokes: 3
     }, {
-      userSent: 'Nadav',
-      userReceived: 'Bar',
+      userSent: 'bar',
+      userReceived: 'nadav',
       lastPokeTime: Date.now(),
       numberOfPokes: 4
     }, {
-      userSent: 'Mor',
-      userReceived: 'Bar',
+      userSent: 'mor',
+      userReceived: 'bar',
       lastPokeTime: Date.now(),
       numberOfPokes: 105
-    }, {
-        userSent: 'Mor',
-        userReceived: 'Nadav',
-        lastPokeTime: Date.now(),
-        numberOfPokes: 333
-    }, {
-        userSent: 'Bar',
-        userReceived: 'Nadav',
-        lastPokeTime: Date.now(),
-        numberOfPokes: 666
     }];
   }
 };

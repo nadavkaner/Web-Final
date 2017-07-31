@@ -16,7 +16,7 @@
         </div>
     </div>
     <md-list flex>
-        <md-list-item ng-repeat="user in users | orderBy: '-date' track by user._id" flex>
+        <md-list-item class="poke-animate" ng-repeat="user in suggestedPokes | orderBy: '-date' track by user._id" flex>
             <md-card layout-padding class="post-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
                     <span class="md-title">{{user.username}}</span>
@@ -27,7 +27,7 @@
                         <span class="md-subhead">Number Of Pokes</span>
                         <span class="md-subhead">{{user.numberOfPokes}}</span>
                     </md-card-content-text>
-                    <md-button class="md-raised md-primary">Poke</md-button>
+                    <md-button ng-click="onPoke(user)" class="md-raised md-primary">Poke</md-button>
                 </md-card-content>
             </md-card>
         </md-list-item>

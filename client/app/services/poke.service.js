@@ -14,10 +14,10 @@ angular.module('ipoke.services')
         },
         isArray: true
       },
-      author: {
+      suggestedPokes: {
         method: 'GET',
         params: {
-          controller: 'author'
+          controller: 'suggestedPokes'
         },
         isArray: true
       }

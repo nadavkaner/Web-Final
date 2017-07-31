@@ -24,6 +24,12 @@ export default {
       admin: false,
       avgReactionTime: 204,
       numberOfPokes: 222
+    }, {
+      username: 'sharon',
+      password: '123',
+      admin: false,
+      avgReactionTime: 204,
+      numberOfPokes: 222
     }];
   }
 };

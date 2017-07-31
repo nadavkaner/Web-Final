@@ -4,9 +4,10 @@ import _ from 'lodash';
 const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
-  .controller('main', ($scope, Auth, Poke, $mdDialog) => {
+  .controller('main', ($scope, Auth, Poke) => {
       let currentUser = Auth.getCurrentUser();
       $scope.losingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
+      console.log($scope.losingPokes);
       $scope.winningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
       $scope.searchTerm = '';
       $scope.filterBy = '';
