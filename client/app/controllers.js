@@ -10,6 +10,6 @@ require('./main/main');
 require('./users/users');
 require('./admin/admin');
 require('./about/about');
-require('./statistics/statistics');
+require('./highscores/highscores');
 
 export default MODULE_NAME;

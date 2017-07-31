@@ -3,18 +3,20 @@ import angular from 'angular';
 const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
-    .controller('statistics', ($scope, Poke) => {
-      Poke.group().$promise.then(data => {
-        $scope.groups = data;
-        createPopularUsersGraph(data, 'popular-genre-graph');
-      });
+    .controller('highscores', ($scope, Poke, Auth) => {
+      let currentUser = Auth.getCurrentUser();
+      $scope.losingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
+      $scope.winningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
 
-      Poke.author().$promise.then(data => {
-        $scope.authors = data;
-        createPopularUsersGraph(data, 'popular-author-graph');
-      });
+      $scope.joinedPokes = $scope.losingPokes.concat($scope.winningPokes);
+      createPokesGraph($scope.losingPokes.concat($scope.winningPokes), 'popular-genre-graph');
 
-      function createPopularUsersGraph (data, id) {
+      // Poke.author().$promise.then(data => {
+      //   $scope.authors = data;
+      //   createPopularUsersGraph(data, 'popular-author-graph');
+      // });
+
+      function createPokesGraph (data, id) {
         let width = 400,
           height = 400,
           radius = Math.min(width, height) / 2;
