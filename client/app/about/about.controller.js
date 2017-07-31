@@ -5,6 +5,12 @@ const MODULE_NAME = 'ipoke.controllers';
 angular.module(MODULE_NAME).controller('about', ($scope, $http, Auth) => {
   Auth.index().then(response => {
     $scope.users = response.data;
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("IPoke",10,50);
   });
   // const canvas = document.getElementById('canvas');
   // const ctx = canvas.getContext('2d');
