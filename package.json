@@ -12,7 +12,7 @@
     "lint-server": "eslint server --fix",
     "lint-client": "eslint client/app --fix",
     "dev": "run-p client-dev server-dev",
-    "client-dev": "webpack-dev-server --open",
+    "client-dev": "webpack-dev-server --devtool source-map --open",
     "server-dev": "nodemon --watch server --exec \"babel-node\" server/app.js",
     "prod": "npm run build && nodemon dist/server/app.js"
   },
