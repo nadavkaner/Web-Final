@@ -2,7 +2,7 @@ import angular from 'angular';
 
 const MODULE_NAME = 'ipoke.controllers';
 
-angular.module(MODULE_NAME).controller('users', ($scope, User, $mdDialog) => {
+angular.module(MODULE_NAME).controller('users', ($scope, User) => {
   $scope.users = User.query();
   console.log($scope.users);
   $scope.searchTerm = '';

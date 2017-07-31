@@ -1,6 +1,39 @@
 <div flex layout="column" class="main">
     <div class="pokes-header" layout="column">
-        <h1> Fights Losing !</h1>
+        <h2> Fights Losing!</h2>
+        <div layout="row">
+            <md-input-container>
+                <label>Filter</label>
+                <md-select ng-model="filterBy">
+                    <md-option ng-value="">None</md-option>
+                    <md-option ng-repeat="filter in filterTypes" ng-value="filter">{{filter}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <input placeholder="Search Term" type="text" ng-model="searchTerm">
+            </md-input-container>
+            <md-button ng-click="search()">Search</md-button>
+        </div>
+    </div>
+    <md-list>
+        <md-list-item class="poke-animate" ng-repeat="poke in losingPokes | orderBy: '-date' track by poke._id" flex>
+            <md-card layout-padding class="poke-card" layout="row">
+                <md-card-header-text layout="column" class="poke-title">
+                    <span class="md-title">{{poke.userSent}}</span>
+                    <span class="md-subhead">{{poke.lastPokeTime | amCalendar}}</span>
+                </md-card-header-text>
+                <md-card-content layout="row" flex class="poke-content">
+                    <md-card-content-text layout="column">
+                        <span class="md-subhead">Number Of Pokes</span>
+                        <span class="md-subhead">{{poke.numberOfPokes}}</span>
+                    </md-card-content-text>
+                    <md-button ng-click="onPoke(poke)" class="md-raised md-primary">Poke</md-button>
+                </md-card-content>
+            </md-card>
+        </md-list-item>
+    </md-list>
+    <div class="pokes-header" layout="column">
+        <h2>Fights Winning</h2>
         <div  layout="row">
             <md-input-container>
                 <label>Filter</label>
@@ -15,11 +48,11 @@
             <md-button ng-click="search()">Search</md-button>
         </div>
     </div>
-    <md-list flex>
-        <md-list-item ng-repeat="poke in pokes | orderBy: '-date' track by poke._id" flex>
-            <md-card layout-padding class="post-card" layout="row">
+    <md-list>
+        <md-list-item ng-repeat="poke in winningPokes | orderBy: '-date' track by poke._id" flex>
+            <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
-                    <span class="md-title">{{poke.userSent}}</span>
+                    <span class="md-title">{{poke.userReceived}}</span>
                     <span class="md-subhead">{{poke.lastPokeTime | amCalendar}}</span>
                 </md-card-header-text>
                 <md-card-content layout="row" flex class="poke-content">
@@ -27,14 +60,8 @@
                         <span class="md-subhead">Number Of Pokes</span>
                         <span class="md-subhead">{{poke.numberOfPokes}}</span>
                     </md-card-content-text>
-                    <md-button ng-click="onPoke(poke)" class="md-raised md-primary" >Poke</md-button>
                 </md-card-content>
             </md-card>
         </md-list-item>
     </md-list>
-    <md-button ng-click="openNewPostModal()" class="md-accent md-fab md-fab-bottom-right">
-        <i class="mdi mdi-plus">
-            <md-tooltip md-direction="right">New Post</md-tooltip>
-        </i>
-    </md-button>
 </div>

@@ -1,5 +1,23 @@
-.post-card {
+.poke-card {
   width: 100%;
+}
+
+.poke-animate.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+
+.poke-animate.ng-enter-active {
+  opacity: 1;
+}
+
+.poke-animate.ng-leave {
+  transition: 0.5s linear all;
+  opacity: 1;
+}
+
+.poke-animate.ng-leave-active {
+  opacity: 0;
 }
 
 .poke-content{
@@ -20,3 +38,4 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+

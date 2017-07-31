@@ -1,45 +1,41 @@
 import angular from 'angular';
+import _ from 'lodash';
 
 const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
-    .controller('main', ($scope, Auth, Poke, $mdDialog) => {
+  .controller('main', ($scope, Auth, Poke, $mdDialog) => {
       let currentUser = Auth.getCurrentUser();
-      $scope.pokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
+      $scope.losingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
+      $scope.winningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
       $scope.searchTerm = '';
       $scope.filterBy = '';
 
-      $scope.filterTypes = ['name'];
+      $scope.filterTypes = ['Name'];
 
       $scope.search = () => {
-        const filter = $scope.filterBy;
+        const filter = $scope.filterBy.toLowerCase();
         let term = $scope.searchTerm;
 
         if (!filter) {
           term = '';
         }
 
-        $scope.pokes = Poke.query({term, filter});
+        $scope.losingPokes  = Poke.query({term, filter});
       };
 
-      $scope.onNewPoke = (poke) => {
-        const newPoke = {
-          userSent: '',
-          userReceived: '',
-          lastPokeTime: '',
-          numberOfPokes: 0
+      $scope.onPoke = (poke) => {
+        const updatePoke = {
+          userSent: poke.userReceived,
+          userReceived: poke.userSent,
+          lastPokeTime: Date.now(),
+          numberOfPokes: poke.numberOfPokes + 1
         };
 
-        Poke.save(newPoke);
-      };
-
-      $scope.openNewPostModal = () => {
-        $mdDialog.show({
-          controller: 'newPost',
-          templateUrl: '/app/main/new-post/new-post.html',
-          clickOutsideToClose: false
-        }).then(result => {
-          $scope.pokes.push(result);
+        Poke.update({id: poke._id}, updatePoke).$promise
+          .then(newPoke => {
+            _.remove($scope.losingPokes , (p) => p._id === poke._id);
+            $scope.winningPokes.push(newPoke);
         });
       };
     });

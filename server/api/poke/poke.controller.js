@@ -52,9 +52,10 @@ export function update({body, params: {id}}) {
   return Poke.findById(id)
       .then(empty)
       .then(post => {
-        post.author = body.author;
-        post.content = body.content;
-        post.title = body.title;
+        post.userSent = body.userSent;
+        post.userReceived = body.userReceived;
+        post.lastPokeTime = body.lastPokeTime;
+        post.numberOfPokes = body.numberOfPokes;
 
         return post.save();
       });
