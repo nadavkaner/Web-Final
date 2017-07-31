@@ -3,7 +3,7 @@ import angular from 'angular';
 const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
-  .controller('main', ($scope, Auth, Poke, $mdDialog) => {
+    .controller('main', ($scope, Auth, Poke, $mdDialog) => {
       let currentUser = Auth.getCurrentUser();
       $scope.pokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
       $scope.searchTerm = '';
@@ -24,10 +24,10 @@ angular.module(MODULE_NAME)
 
       $scope.onNewPoke = (poke) => {
         const newPoke = {
-            userSent: '',
-            userReceived: '',
-            lastPokeTime: '',
-            numberOfPokes: 0
+          userSent: '',
+          userReceived: '',
+          lastPokeTime: '',
+          numberOfPokes: 0
         };
 
         Poke.save(newPoke);
@@ -42,4 +42,4 @@ angular.module(MODULE_NAME)
           $scope.pokes.push(result);
         });
       };
-});
+    });

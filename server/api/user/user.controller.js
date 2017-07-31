@@ -24,7 +24,7 @@ export function login({body: {username, password}}) {
           return Promise.reject(createError(401, 'Unauthorized'));
         }
 
-        return user._id;
+        return user;
       });
 }
 
