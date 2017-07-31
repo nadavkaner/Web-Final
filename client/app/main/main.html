@@ -3,20 +3,13 @@
         <h2> Fights Losing!</h2>
         <div layout="row">
             <md-input-container>
-                <label>Filter</label>
-                <md-select ng-model="filterBy">
-                    <md-option ng-value="">None</md-option>
-                    <md-option ng-repeat="filter in filterTypes" ng-value="filter">{{filter}}</md-option>
-                </md-select>
+                <input placeholder="Search Term" type="text" ng-model="losingSearchTerm">
             </md-input-container>
-            <md-input-container>
-                <input placeholder="Search Term" type="text" ng-model="searchTerm">
-            </md-input-container>
-            <md-button ng-click="search()">Search</md-button>
+            <md-button ng-click="losingSearch()">Search</md-button>
         </div>
     </div>
     <md-list>
-        <md-list-item class="poke-animate" ng-repeat="poke in losingPokes | orderBy: '-date' track by poke._id" flex>
+        <md-list-item class="poke-animate" ng-repeat="poke in visibleLosingPokes | orderBy: '-date' track by poke._id" flex>
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
                     <span class="md-title">{{poke.userSent}}</span>
@@ -36,20 +29,13 @@
         <h2>Fights Winning</h2>
         <div  layout="row">
             <md-input-container>
-                <label>Filter</label>
-                <md-select ng-model="filterBy">
-                    <md-option ng-value="">None</md-option>
-                    <md-option ng-repeat="filter in filterTypes" ng-value="filter">{{filter}}</md-option>
-                </md-select>
+                <input placeholder="Search Term" type="text" ng-model="winningSearchTerm">
             </md-input-container>
-            <md-input-container>
-                <input placeholder="Search Term" type="text" ng-model="searchTerm">
-            </md-input-container>
-            <md-button ng-click="search()">Search</md-button>
+            <md-button ng-click="winningSearch()">Search</md-button>
         </div>
     </div>
     <md-list>
-        <md-list-item class="poke-animate" ng-repeat="poke in winningPokes | orderBy: '-date' track by poke._id" flex>
+        <md-list-item class="poke-animate" ng-repeat="poke in visibleWinningPokes | orderBy: '-date' track by poke._id" flex>
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
                     <span class="md-title">{{poke.userReceived}}</span>

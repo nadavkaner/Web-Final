@@ -6,23 +6,22 @@ const MODULE_NAME = 'ipoke.controllers';
 angular.module(MODULE_NAME)
   .controller('main', ($scope, Auth, Poke) => {
       let currentUser = Auth.getCurrentUser();
-      $scope.losingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
-      console.log($scope.losingPokes);
-      $scope.winningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
-      $scope.searchTerm = '';
-      $scope.filterBy = '';
+      const allLosingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
+      const allWinningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
+      $scope.visibleLosingPokes = allLosingPokes;
+      $scope.visibleWinningPokes = allWinningPokes;
+      $scope.losingSearchTerm = '';
+      $scope.winningSearchTerm = '';
 
-      $scope.filterTypes = ['Name'];
+      $scope.losingSearch = () => {
+        let term = $scope.losingSearchTerm;
+        console.log(allLosingPokes);
+        $scope.visibleLosingPokes  = allLosingPokes.filter(x => x.userSent.includes(term));
+      };
 
-      $scope.search = () => {
-        const filter = $scope.filterBy.toLowerCase();
-        let term = $scope.searchTerm;
-
-        if (!filter) {
-          term = '';
-        }
-
-        $scope.losingPokes  = Poke.query({term, filter});
+      $scope.winningSearch = () => {
+        let term = $scope.winningSearchTerm;
+        $scope.visibleWinningPokes  = allWinningPokes.filter(x => x.userSent.includes(term));
       };
 
       $scope.onPoke = (poke) => {

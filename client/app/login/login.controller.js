@@ -9,7 +9,6 @@ angular.module(MODULE_NAME).controller('login', ($scope, Poke, $state, $mdDialog
   };
 
   $scope.openLogin = () => {
-    console.log("hlo");
     if(Auth.getCurrentUser()) return;
     $mdDialog.show({
       controller: 'login-popup',

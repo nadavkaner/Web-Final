@@ -5,12 +5,10 @@ const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME).controller('users', ($scope, Poke, Auth) => {
   const currentUser = Auth.getCurrentUser().username;
-  $scope.suggestedPokes = Poke.suggestedPokes({username: currentUser});
+  const allSuggestedPokes = Poke.suggestedPokes({username: currentUser});
+  $scope.suggestedPokes = allSuggestedPokes;
 
   $scope.searchTerm = '';
-  $scope.filterBy = '';
-
-  $scope.filterTypes = ['username'];
 
   $scope.onPoke = (user) => {
     Poke.save({
@@ -23,14 +21,8 @@ angular.module(MODULE_NAME).controller('users', ($scope, Poke, Auth) => {
     });
   };
 
-  // $scope.search = () => {
-  //   const filter = $scope.filterBy;
-  //   let term = $scope.searchTerm;
-  //
-  //   if (!filter) {
-  //     term = '';
-  //   }
-  //
-  //   $scope.users = User.query({term, filter});
-  // };
+  $scope.search = () => {
+    let term = $scope.searchTerm;
+    $scope.suggestedPokes  = allSuggestedPokes.filter(x => x.username.includes(term));
+  };
 });

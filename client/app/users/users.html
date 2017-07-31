@@ -3,13 +3,6 @@
         <h1> Users </h1>
         <div layout="row">
             <md-input-container>
-                <label>Filter</label>
-                <md-select ng-model="filterBy">
-                    <md-option ng-value="">None</md-option>
-                    <md-option ng-repeat="filter in filterTypes" ng-value="filter">{{filter}}</md-option>
-                </md-select>
-            </md-input-container>
-            <md-input-container>
                 <input placeholder="Search Term" type="text" ng-model="searchTerm">
             </md-input-container>
             <md-button ng-click="search()">Search</md-button>
