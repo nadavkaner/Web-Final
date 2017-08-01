@@ -35,15 +35,6 @@ export function GroupByUserFights() {
   ]);
 }
 
-export function getByGenre() {
-  return Poke.aggregate([{
-    $group: {
-      _id: '$genre',
-      count: {$sum: 1}
-    }
-  }]);
-}
-
 export function suggestedPokes({query: {username}}) {
   return Poke.find({$or: [{'userReceived': username}, {'userSent': username}]})
     .select('userReceived userSent')
@@ -54,12 +45,7 @@ export function suggestedPokes({query: {username}}) {
         return arr;
       }, [username]))];
 
-      const promise = User.find({$and: [{'username': {$nin: distinct}}, {'admin': false}]}).exec();
-      promise.then(users => {
-        console.log(users);
-      });
-      return promise;
-
+      return User.find({$and: [{'username': {$nin: distinct}}, {'admin': false}]});
     });
 }
 

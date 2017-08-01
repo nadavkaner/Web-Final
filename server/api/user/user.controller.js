@@ -1,4 +1,5 @@
 import User from './user.model';
+import Poke from '../poke/poke.model';
 import empty from 'http-reject-empty';
 import createError from 'http-errors';
 
@@ -32,8 +33,10 @@ export function destroy({params: {id}}) {
   return User.findById(id)
     .then(empty)
     .then(user => {
-      return user.remove();
-    });
+      const {username} = user;
+      return Poke.remove({$or: [{'userReceived': username}, {'userSent': username}]})
+        .then(() => user.remove());
+      });
 }
 
 export function update() {
