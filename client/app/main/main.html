@@ -9,7 +9,7 @@
         </div>
     </div>
     <md-list>
-        <md-list-item class="poke-animate" ng-repeat="poke in visibleLosingPokes | orderBy: '-date' track by poke._id" flex>
+        <md-list-item class="fade-animate" ng-repeat="poke in visibleLosingPokes | orderBy: '-date' track by poke._id" flex>
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
                     <span class="md-title">{{poke.userSent}}</span>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <md-list>
-        <md-list-item class="poke-animate" ng-repeat="poke in visibleWinningPokes | orderBy: '-date' track by poke._id" flex>
+        <md-list-item class="fade-animate" ng-repeat="poke in visibleWinningPokes | orderBy: '-date' track by poke._id" flex>
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
                     <span class="md-title">{{poke.userReceived}}</span>
