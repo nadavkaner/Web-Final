@@ -28,8 +28,12 @@ export function login({body: {username, password}}) {
       });
 }
 
-export function destroy() {
-  return null;
+export function destroy({params: {id}}) {
+  return User.findById(id)
+    .then(empty)
+    .then(user => {
+      return user.remove();
+    });
 }
 
 export function update() {
