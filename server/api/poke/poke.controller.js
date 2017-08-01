@@ -52,7 +52,7 @@ export function suggestedPokes({query: {username}}) {
         arr.push(val.userReceived);
         arr.push(val.userSent);
         return arr;
-      }, []))];
+      }, [username]))];
 
       const promise = User.find({$and: [{'username': {$nin: distinct}}, {'admin': false}]}).exec();
       promise.then(users => {
