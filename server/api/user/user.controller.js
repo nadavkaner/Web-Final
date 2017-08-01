@@ -57,7 +57,8 @@ export function create({body: {username, password, location}}) {
           location: location,
           admin: false,
           avgReactionTime: 0,
-          numberOfPokes: 0
+          numberOfPokes: 0,
+          randomImage: Math.floor((Math.random() * 100) + 1)
         })
       })
       .then(createdUser => createdUser._id);

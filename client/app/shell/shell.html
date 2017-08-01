@@ -4,12 +4,15 @@
         <h1>IPoke</h1>
     </md-toolbar>
     <div layout="row" flex>
-        <nav layout="row" flex="15">
+        <nav layout="row" flex="20">
             <md-sidenav md-whiteframe="4" md-is-locked-open="true" class="md-sidenav-right" layout-padding>
-                <div ng-show="isLoggedOn()" layout="row" class="user-card">
-                    <span class="user-welcome" flex>Hello {{getUser().username}}</span>
-                    <md-button flex ng-click="logout()">Logout</md-button>
-                </div>
+                <md-card ng-show="isLoggedOn()" layout="row" class="user-card" style="padding: 20px">
+                    <img class="user-card-image" height="50" width="50" src="https://unsplash.it/200/300?image={{getUser().randomImage}}"/>
+                    <div layout="column" flex class="user-card-data">
+                        <span class="user-welcome" flex>{{getUser().username}}</span>
+                        <md-button class="md-primary" flex ng-click="logout()">Logout</md-button>
+                    </div>
+                </md-card>
                 <md-button ui-sref="shell.main">Fights</md-button>
                 <md-button ui-sref="shell.users">Suggested Pokes</md-button>
                 <md-button ui-sref="shell.highscores">Highscores</md-button>
@@ -17,7 +20,7 @@
                 <md-button ui-sref="shell.admin" ng-if="isUserAdmin()">Admin panel</md-button>
                 <span flex></span>
                 <footer>
-                    Be the very best <br>(at annoying)
+                    Be the very best (at annoying)
                 </footer>
             </md-sidenav>
         </nav>

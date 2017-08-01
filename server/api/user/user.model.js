@@ -26,7 +26,11 @@ const UserSchema = new Schema({
     type: Number,
     default: 0
   },
-  location: Schema.Types.Mixed
+  location: Schema.Types.Mixed,
+  randomImage: {
+    type: Number,
+    default: 1
+  }
 });
 
 UserSchema.plugin(mongoosePaginate);
