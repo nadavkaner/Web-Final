@@ -20,6 +20,25 @@ export function index({query: {term, filter}}) {
   return Poke.find(query);
 }
 
+export function getUserPokes({query: {user}}) {
+    return Poke
+        .where('userReceived')
+        .equals(user);
+}
+
+export function GroupByUserFights() {
+  return Poke.aggregate([
+    { $project: {users: [ "$userSent", "$userReceived"]}},
+    { $unwind: "$users" },
+    { $group: {
+      _id: "$users",
+      count: { $sum: 1 }
+    }},
+    { $sort :{ count: -1 } },
+    { $limit : 5 }
+  ]);
+}
+
 export function getByGenre() {
   return Poke.aggregate([{
     $group: {

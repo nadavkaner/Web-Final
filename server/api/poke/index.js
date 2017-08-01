@@ -10,8 +10,8 @@ router.param('id', objectId);
 router.use(paginate.middleware(10, 50));
 
 router.get('/', controller.index);
+router.get('/group', controller.GroupByUserFights);
 router.get('/suggestedPokes', controller.suggestedPokes);
-router.get('/group', controller.getByGenre);
 router.get('/:id', controller.get);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
