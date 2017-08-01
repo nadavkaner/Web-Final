@@ -34,8 +34,8 @@ angular.module(MODULE_NAME)
 
         Poke.update({id: poke._id}, updatePoke).$promise
           .then(newPoke => {
-            _.remove($scope.losingPokes , (p) => p._id === poke._id);
-            $scope.winningPokes.push(newPoke);
+            _.remove($scope.visibleLosingPokes , (p) => p._id === poke._id);
+            $scope.visibleWinningPokes.push(newPoke);
         });
       };
     });
