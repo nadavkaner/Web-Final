@@ -4,19 +4,12 @@ const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
     .controller('highscores', ($scope, Poke, Auth) => {
-      let currentUser = Auth.getCurrentUser();
-      $scope.losingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
-      $scope.winningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
+      Poke.group().$promise.then(data => {
+        $scope.groups = data;
+        createHighscorePieChart(data, 'fighters-graph');
+      });
 
-      $scope.joinedPokes = $scope.losingPokes.concat($scope.winningPokes);
-      createPokesGraph($scope.losingPokes.concat($scope.winningPokes), 'popular-genre-graph');
-
-      // Poke.author().$promise.then(data => {
-      //   $scope.authors = data;
-      //   createPopularUsersGraph(data, 'popular-author-graph');
-      // });
-
-      function createPokesGraph (data, id) {
+      function createHighscorePieChart (data, id) {
         let width = 400,
           height = 400,
           radius = Math.min(width, height) / 2;

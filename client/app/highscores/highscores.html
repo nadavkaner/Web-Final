@@ -1,12 +1,13 @@
-<div layout="column" class="statistics">
-    <span class="md-title">Statistics</span>
-    <span class="md-subhead">Genres - Count</span>
-    <span class="md-display-1" ng-repeat="group in groups">{{group._id}} - {{group.count}}</span>
-
-    <section>
-        <h3>Genres Chart</h3>
-        <div id="popular-genre-graph"></div>
-    <h3>Authors Chart</h3>
-        <div id="popular-author-graph"></div>
-    </section>
+<div class="highscore">
+    <h3 class="highscore-section">Top Fighters</h3>
+    <div  layout="row" class="highscore-charts">
+        <div class="highscore-section" layout="column">
+            <span class="md-title">User - Number Of Fights</span>
+            <span class="md-subhead" ng-repeat="group in groups">#{{$index + 1}} | {{group._id}} - {{group.count}}</span class="md-subhead">
+        </div>
+        <div class="highscore-section" layout="column">
+            <span class="md-title">Fighters Pie (Yami)</span>
+            <div id="fighters-graph"></div>
+        </div>
+    </div>
 </div>
