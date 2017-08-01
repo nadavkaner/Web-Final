@@ -15,27 +15,23 @@ export function index({query: {term, filter}}) {
 
       return {$or: [pred]};
     });
-}
+  }
 
   return Poke.find(query);
 }
 
-export function getUserPokes({query: {user}}) {
-    return Poke
-        .where('userReceived')
-        .equals(user);
-}
-
 export function GroupByUserFights() {
   return Poke.aggregate([
-    { $project: {users: [ "$userSent", "$userReceived"]}},
-    { $unwind: "$users" },
-    { $group: {
-      _id: "$users",
-      count: { $sum: 1 }
-    }},
-    { $sort :{ count: -1 } },
-    { $limit : 5 }
+    {$project: {users: ["$userSent", "$userReceived"]}},
+    {$unwind: "$users"},
+    {
+      $group: {
+        _id: "$users",
+        count: {$sum: 1}
+      }
+    },
+    {$sort: {count: -1}},
+    {$limit: 5}
   ]);
 }
 
@@ -49,7 +45,7 @@ export function getByGenre() {
 }
 
 export function suggestedPokes({query: {username}}) {
-  return Poke.find({ $or: [{'userReceived': username}, {'userSent': username}] })
+  return Poke.find({$or: [{'userReceived': username}, {'userSent': username}]})
     .select('userReceived userSent')
     .then(pokes => {
       const distinct = [...new Set(pokes.reduce((arr, val) => {
@@ -58,7 +54,7 @@ export function suggestedPokes({query: {username}}) {
         return arr;
       }, []))];
 
-      const promise = User.find({ $and: [{'username': {$nin: distinct }}, {'admin': false}] }).exec();
+      const promise = User.find({$and: [{'username': {$nin: distinct}}, {'admin': false}]}).exec();
       promise.then(users => {
         console.log(users);
       });
@@ -69,36 +65,36 @@ export function suggestedPokes({query: {username}}) {
 
 export function get({params: {id}}) {
   return Poke.findById(id)
-      .then(empty);
+    .then(empty);
 }
 
 export function create({body}, res) {
   return Poke.create(body)
-      .then(post => {
-        res.status(201);
+    .then(post => {
+      res.status(201);
 
-        return post;
-      });
+      return post;
+    });
 }
 
 export function update({body, params: {id}}) {
   return Poke.findById(id)
-      .then(empty)
-      .then(post => {
-        post.userSent = body.userSent;
-        post.userReceived = body.userReceived;
-        post.lastPokeTime = body.lastPokeTime;
-        post.numberOfPokes = body.numberOfPokes;
+    .then(empty)
+    .then(post => {
+      post.userSent = body.userSent;
+      post.userReceived = body.userReceived;
+      post.lastPokeTime = body.lastPokeTime;
+      post.numberOfPokes = body.numberOfPokes;
 
-        return post.save();
-      });
+      return post.save();
+    });
 }
 
 export function destroy({params: {id}}) {
   return Poke.findById(id)
-      .then(empty)
-      .then(post => {
-        return post.remove();
-      })
-      .then(_.noop);
+    .then(empty)
+    .then(post => {
+      return post.remove();
+    })
+    .then(_.noop);
 }

@@ -16,9 +16,8 @@ angular.module('ipoke.services')
                     console.log("register");
                     console.log(response);
                     localStorage.setItem('token', response.data);
-                    currentUser = User.get({id: response.data});
-
-                    return response;
+                    return User.get({id: response.data}).$promise
+                      .then(user => currentUser = user);
                 });
         },
         login({username, password}) {

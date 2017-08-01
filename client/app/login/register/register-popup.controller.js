@@ -10,8 +10,8 @@ angular.module(MODULE_NAME).controller('register-popup', ($scope, Poke, $mdDialo
     $scope.register = () => {
       if(!$scope.registrationForm.$valid) return;
 
-      var registerTask = Auth.create({username: $scope.user.username, password: $scope.user.password, location: $scope.user.locationJson});
-      registerTask.finally(() => {
+      Auth.create({username: $scope.user.username, password: $scope.user.password, location: $scope.user.locationJson})
+        .then(() => {
           if(Auth.getCurrentUser()){
               $mdDialog.cancel();
               $state.go('shell.main');
