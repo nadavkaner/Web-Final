@@ -8,9 +8,8 @@
             </md-select>
         </md-input-container>
         <md-input-container>
-            <input placeholder="Search Term" type="text" ng-model="searchTerm">
+            <input placeholder="Search Term" ng-change="search()" type="text" ng-model="searchTerm">
         </md-input-container>
-        <md-button ng-click="search()">Search</md-button>
     </div>
     <md-list flex>
         <md-list-item class="fade-animate" ng-repeat="user in users | orderBy: '-date' track by user._id" flex>
