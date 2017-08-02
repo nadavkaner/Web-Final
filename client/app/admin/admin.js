@@ -1,8 +1,6 @@
 import angular from 'angular';
 import './admin.controller';
 import './admin.less';
-import './edit-post/edit-post.controller';
-import './edit-post/edit-post.less';
 
 const MODULE_NAME = 'ipoke.controllers';
 

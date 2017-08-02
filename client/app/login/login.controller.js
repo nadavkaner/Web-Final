@@ -15,8 +15,6 @@ angular.module(MODULE_NAME).controller('login', ($scope, Poke, $state, $mdDialog
       templateUrl: '/app/login/login/login-popup.html',
       clickOutsideToClose: false,
       escapeToClose: false
-    }).then(result => {
-      $scope.posts.push(result);
     });
   };
 });

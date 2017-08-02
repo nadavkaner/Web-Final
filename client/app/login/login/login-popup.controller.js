@@ -8,7 +8,6 @@ angular.module(MODULE_NAME).controller('login-popup', ($scope, Poke, $mdDialog, 
         password: ''
     };
 
-    // console.log(Auth.index())
     $scope.login = () => {
         var loginTask = Auth.login({username: $scope.user.username, password: $scope.user.password});
         loginTask.finally(() => {
@@ -32,8 +31,6 @@ angular.module(MODULE_NAME).controller('login-popup', ($scope, Poke, $mdDialog, 
         templateUrl: '/app/login/register/register-popup.html',
         clickOutsideToClose: false,
         escapeToClose: false
-      }).then(result => {
-        $scope.posts.push(result);
       });
     };
 

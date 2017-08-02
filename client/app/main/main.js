@@ -1,8 +1,6 @@
 import angular from 'angular';
 import './main.controller';
 import './main.less';
-import './new-post/new-post.controller';
-import './new-post/new-post.less';
 
 const MODULE_NAME = 'ipoke.controllers';
 

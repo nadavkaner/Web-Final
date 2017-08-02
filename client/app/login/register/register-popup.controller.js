@@ -30,8 +30,6 @@ angular.module(MODULE_NAME).controller('register-popup', ($scope, Poke, $mdDialo
       templateUrl: '/app/login/login/login-popup.html',
       clickOutsideToClose: false,
       escapeToClose: false
-    }).then(result => {
-      $scope.posts.push(result);
     });
   };
 
