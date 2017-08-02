@@ -5,9 +5,9 @@ const MODULE_NAME = 'ipoke.controllers';
 
 angular.module(MODULE_NAME)
   .controller('main', ($scope, Auth, Poke) => {
-      let currentUser = Auth.getCurrentUser();
-      const allLosingPokes = Poke.query({term: currentUser.username, filter: 'userReceived'});
-      const allWinningPokes = Poke.query({term: currentUser.username, filter: 'userSent'});
+      let {username} = Auth.getCurrentUser();
+      const allLosingPokes = Poke.query({term: username, filter: 'userReceived'});
+      const allWinningPokes = Poke.query({term: username, filter: 'userSent'});
       $scope.visibleLosingPokes = allLosingPokes;
       $scope.visibleWinningPokes = allWinningPokes;
       $scope.losingSearchTerm = '';
@@ -24,6 +24,15 @@ angular.module(MODULE_NAME)
         $scope.visibleWinningPokes  = allWinningPokes.filter(x => x.userSent.includes(term));
       };
 
+      socket.on('poke', poke => {
+        if (poke.userReceived === username) {
+          $scope.$apply(() => {
+            allLosingPokes.push(poke);
+            _.remove(allWinningPokes, p => p._id === poke._id);
+          });
+        }
+      });
+
       $scope.onPoke = (poke) => {
         const updatePoke = {
           userSent: poke.userReceived,
@@ -34,8 +43,9 @@ angular.module(MODULE_NAME)
 
         Poke.update({id: poke._id}, updatePoke).$promise
           .then(newPoke => {
-            _.remove($scope.visibleLosingPokes , (p) => p._id === poke._id);
+            _.remove($scope.visibleLosingPokes , p => p._id === poke._id);
             $scope.visibleWinningPokes.push(newPoke);
+            socket.emit('poke', newPoke);
         });
       };
     });
