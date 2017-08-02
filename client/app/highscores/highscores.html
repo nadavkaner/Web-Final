@@ -2,12 +2,24 @@
     <h3 class="highscore-section">Top Fighters</h3>
     <div  layout="row" class="highscore-charts">
         <div class="highscore-section" layout="column">
-            <span class="md-title">User - Number Of Fights</span>
-            <span class="md-subhead" ng-repeat="group in groups">#{{$index + 1}} | {{group._id}} - {{group.count}}</span class="md-subhead">
+            <md-list-item class="fade-animate" ng-repeat="group in groups" flex>
+                <md-card layout-padding class="poke-card" layout="row">
+                    <md-card-header-text layout="ro" class="poke-title">
+                        <h2>#{{$index + 1}} |</h2>
+                    </md-card-header-text>
+                    <md-card-content layout="row">
+                        <img class="user-card-image highscore-field" height="50" width="50" src="http://lorempixel.com/75/75/sports/{{group.userData.randomImage}}"/>
+                        <md-card-content-text layout="column" class="highscore-field">
+                            <span class="md-title">{{group._id}}</span>
+                            <span class="md-subhead">{{group.count}}</span>
+                        </md-card-content-text>
+                    </md-card-content>
+                </md-card>
+        </md-list-item>
         </div>
         <div class="highscore-section" layout="column">
             <span class="md-title">Fighters Pie (Yami)</span>
-            <div id="fighters-graph"></div>
+            <div id="fighters-graph" class="fighters-graph" layout="column" flex></div>
         </div>
     </div>
 </div>

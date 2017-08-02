@@ -48,6 +48,14 @@ export function GroupByUserFights() {
         count: {$sum: 1}
       }
     },
+    {$lookup:
+    {
+      from: "users",
+      localField: "_id",
+      foreignField: "username",
+      as: "userData"
+    }},
+    { $unwind: "$userData" },
     {$sort: {count: -1}},
     {$limit: 5}
   ]);
