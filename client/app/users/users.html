@@ -11,14 +11,21 @@
     <md-list flex>
         <md-list-item class="poke-animate" ng-repeat="user in suggestedPokes | orderBy: '-date' track by user._id" flex>
             <md-card layout-padding class="post-card" layout="row">
-                <md-card-header-text layout="column" class="poke-title">
-                    <span class="md-title">{{user.username}}</span>
-                    <span class="md-subhead">{{user.avgReactionTime}}</span>
+                <md-card-header-text layout="row" class="poke-title">
+                    <img class="user-card-image" height="50" width="50" src="https://unsplash.it/200/300?image={{user.randomImage}}"/>
                 </md-card-header-text>
                 <md-card-content layout="row" flex class="poke-content">
-                    <md-card-content-text layout="column">
+                    <div layout="column" class="poke-field">
+                        <span class="md-subhead">Username</span>
+                        <span class="md-subhead"><b>{{user.username}}</b></span>
+                    </div>
+                    <md-card-content-text layout="column" class="poke-field">
                         <span class="md-subhead">Number Of Pokes</span>
                         <span class="md-subhead">{{user.numberOfPokes}}</span>
+                    </md-card-content-text>
+                    <md-card-content-text layout="column"  class="poke-field">
+                        <span class="md-subhead">Average Reaction Time</span>
+                        <span class="md-subhead">{{user.avgReactionTime}}</span>
                     </md-card-content-text>
                     <md-button ng-click="onPoke(user)" class="md-raised md-primary">Poke</md-button>
                 </md-card-content>
