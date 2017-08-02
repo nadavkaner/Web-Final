@@ -12,11 +12,18 @@
         <md-list-item class="fade-animate" ng-repeat="poke in visibleLosingPokes | orderBy: '-date' track by poke._id">
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
-                    <span class="md-title">{{poke.userSent}}</span>
-                    <span class="md-subhead">{{poke.lastPokeTime | amCalendar}}</span>
+                    <img class="user-card-image" height="50" width="50" src="http://lorempixel.com/75/75/sports/{{poke.userSentData.randomImage}}"/>
                 </md-card-header-text>
                 <md-card-content layout="row" flex class="poke-content">
-                    <md-card-content-text layout="column">
+                    <md-card-content-text layout="column"  class="poke-field">
+                        <span class="md-subhead">Username</span>
+                        <span class="md-subhead"><b>{{poke.userSent}}</b></span>
+                    </md-card-content-text>
+                    <md-card-content-text layout="column"  class="poke-field">
+                        <span class="md-subhead">Last Poke Time</span>
+                        <span class="md-subhead">{{poke.lastPokeTime | amCalendar}}</span>
+                    </md-card-content-text>
+                    <md-card-content-text layout="column"  class="poke-field">
                         <span class="md-subhead">Number Of Pokes</span>
                         <span class="md-subhead">{{poke.numberOfPokes}}</span>
                     </md-card-content-text>
@@ -38,13 +45,24 @@
         <md-list-item class="fade-animate" ng-repeat="poke in visibleWinningPokes | orderBy: '-date' track by poke._id">
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
-                    <span class="md-title">{{poke.userReceived}}</span>
-                    <span class="md-subhead">{{poke.lastPokeTime | amCalendar}}</span>
+                    <img class="user-card-image" height="50" width="50" src="http://lorempixel.com/75/75/sports/{{poke.userReceivedData.randomImage}}"/>
                 </md-card-header-text>
                 <md-card-content layout="row" flex class="poke-content">
-                    <md-card-content-text layout="column">
+                    <md-card-content-text layout="column" class="poke-field">
+                        <span class="md-subhead">Username</span>
+                        <span class="md-subhead"><b>{{poke.userReceived}}</b></span>
+                    </md-card-content-text>
+                    <md-card-content-text layout="column" class="poke-field">
+                        <span class="md-subhead">Last Poke Time</span>
+                        <span class="md-subhead">{{poke.lastPokeTime | amCalendar}}</span>
+                    </md-card-content-text>
+                    <md-card-content-text layout="column" class="poke-field">
                         <span class="md-subhead">Number Of Pokes</span>
                         <span class="md-subhead">{{poke.numberOfPokes}}</span>
+                    </md-card-content-text>
+
+                    <md-card-content-text>
+
                     </md-card-content-text>
                 </md-card-content>
             </md-card>
