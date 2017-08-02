@@ -1,30 +1,36 @@
 import angular from 'angular';
+
 const MODULE_NAME = 'ipoke.controllers';
 angular.module(MODULE_NAME).controller('register-popup', ($scope, Poke, $mdDialog, Auth, $state) => {
-    $scope.user = {
-        username: '',
-        password: '',
-        location: ''
-    };
+  $scope.user = {
+    username: '',
+    password: '',
+    location: ''
+  };
 
-    $scope.register = () => {
-      if(!$scope.registrationForm.$valid) return;
+  $scope.register = () => {
+    if (!$scope.registrationForm.$valid) return;
 
-      Auth.create({username: $scope.user.username, password: $scope.user.password, location: $scope.user.locationJson})
+    Auth.create({username: $scope.user.username, password: $scope.user.password, location: $scope.user.locationJson})
         .then(() => {
-          if(Auth.getCurrentUser()){
-              $mdDialog.cancel();
-              $state.go('shell.main');
+          if (Auth.getCurrentUser()) {
+            $mdDialog.cancel();
+            $state.go('shell.main');
           } else {
-              $scope.isRegisterFailed = true;
-              $scope.isLoginFailed = false;
+            setRegisterFailed();
           }
-      });
-    };
+        })
+        .catch(setRegisterFailed);
+  };
+
+  const setRegisterFailed = () => {
+    $scope.isRegisterFailed = true;
+    $scope.isLoginFailed = false;
+  };
 
   $scope.openLogin = () => {
     $mdDialog.cancel();
-    if(Auth.getCurrentUser()) return;
+    if (Auth.getCurrentUser()) return;
     $mdDialog.show({
       controller: 'login-popup',
       templateUrl: '/app/login/login/login-popup.html',
@@ -54,8 +60,8 @@ angular.module(MODULE_NAME).controller('register-popup', ($scope, Poke, $mdDialo
     // Create the autocomplete object, restricting the search to geographical
     // location types.
     autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
+        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+        {types: ['geocode']});
 
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
@@ -77,9 +83,9 @@ angular.module(MODULE_NAME).controller('register-popup', ($scope, Poke, $mdDialo
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
   $scope.geolocate = () => {
-    if(!autocomplete) $scope.initAutocomplete();
+    if (!autocomplete) $scope.initAutocomplete();
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition(function (position) {
         var geolocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
