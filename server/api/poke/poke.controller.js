@@ -17,7 +17,25 @@ export function index({query: {term, filter}}) {
     });
   }
 
-  return Poke.find(query);
+  return Poke.aggregate([
+    {$lookup:
+    {
+      from: "users",
+      localField: "userSent",
+      foreignField: "username",
+      as: "userSentData"
+    }},
+    {$lookup:
+    {
+      from: "users",
+      localField: "userReceived",
+      foreignField: "username",
+      as: "userReceivedData"
+    }},
+    {$match: query},
+    { $unwind: "$userSentData" },
+    { $unwind: "$userReceivedData" }]
+  );
 }
 
 export function GroupByUserFights() {
