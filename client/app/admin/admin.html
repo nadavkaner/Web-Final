@@ -13,15 +13,22 @@
     </div>
     <md-list flex>
         <md-list-item class="fade-animate" ng-repeat="user in users | orderBy: '-date' track by user._id" flex>
-            <md-card class="user-card" layout-padding layout="row">
-                <md-card-header-text layout="column" class="poke-title">
-                    <span class="md-title">{{user.username}}</span>
-                    <span class="md-subhead">{{user.avgReactionTime}}</span>
+            <md-card class="admin-user-card" layout-padding layout="row">
+                <md-card-header-text layout="row" class="poke-title">
+                    <img class="user-card-image" height="50" width="50" ng-src="http://lorempixel.com/75/75/sports/{{user.randomImage}}"/>
                 </md-card-header-text>
                 <md-card-content layout="row" flex class="poke-content">
-                    <md-card-content-text layout="column">
+                    <div layout="column" class="poke-field">
+                        <span class="md-subhead">Username</span>
+                        <span class="md-subhead"><b>{{user.username}}</b></span>
+                    </div>
+                    <md-card-content-text layout="column" class="poke-field">
                         <span class="md-subhead">Number Of Pokes</span>
                         <span class="md-subhead">{{user.numberOfPokes}}</span>
+                    </md-card-content-text>
+                    <md-card-content-text layout="column"  class="poke-field">
+                        <span class="md-subhead">Average Reaction Time</span>
+                        <span class="md-subhead">{{user.avgReactionTime}}</span>
                     </md-card-content-text>
                     <md-button ng-click="deleteUser(user)" class="md-icon-button" aria-label="Custom Icon Button">
                         <i md-colors="{color: 'primary'}" class="mdi mdi-delete"></i>
