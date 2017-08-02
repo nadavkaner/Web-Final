@@ -13,7 +13,6 @@ angular.module('ipoke.services')
         {
             return $http.post('/api/users', {username, password, location})
                 .then(response => {
-                    console.log("register");
                     console.log(response);
                     localStorage.setItem('token', response.data);
                     return User.get({id: response.data}).$promise
@@ -23,7 +22,6 @@ angular.module('ipoke.services')
         login({username, password}) {
           return $http.post('/api/users/login', {username, password})
               .then(response => {
-                console.log(response);
                 localStorage.setItem('token', response.data._id);
                 currentUser = response.data;
 
