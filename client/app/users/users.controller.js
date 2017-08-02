@@ -19,6 +19,8 @@ angular.module(MODULE_NAME).controller('users', ($scope, Poke, Auth) => {
     }).$promise.then(newPoke => {
       console.log('new poke: ' + newPoke._id + ' user: ' + newPoke.userReceived);
       _.remove(allSuggestedPokes, u => u._id === user._id);
+      newPoke.userSentData = Auth.getCurrentUser();
+      newPoke.userReceivedData = user;
       socket.emit('poke', newPoke);
     });
   };
