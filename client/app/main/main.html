@@ -1,4 +1,4 @@
-<div layout="column" class="main">
+<div flex class="main">
     <div class="pokes-header" layout="column">
         <h2> Fights Losing!</h2>
         <div layout="row">
@@ -8,7 +8,7 @@
             <md-button ng-click="losingSearch()">Search</md-button>
         </div>
     </div>
-    <md-list>
+    <md-list flex>
         <md-list-item class="fade-animate" ng-repeat="poke in visibleLosingPokes | orderBy: '-date' track by poke._id">
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">
@@ -34,7 +34,7 @@
             <md-button ng-click="winningSearch()">Search</md-button>
         </div>
     </div>
-    <md-list>
+    <md-list flex>
         <md-list-item class="fade-animate" ng-repeat="poke in visibleWinningPokes | orderBy: '-date' track by poke._id">
             <md-card layout-padding class="poke-card" layout="row">
                 <md-card-header-text layout="column" class="poke-title">

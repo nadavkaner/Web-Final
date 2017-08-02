@@ -7,7 +7,7 @@
         <nav layout="row" flex="20">
             <md-sidenav md-whiteframe="4" md-is-locked-open="true" class="md-sidenav-right" layout-padding>
                 <md-card ng-show="isLoggedOn()" layout="row" class="user-card" style="padding: 20px">
-                    <img class="user-card-image" height="50" width="50" src="https://unsplash.it/200/300?image={{getUser().randomImage}}"/>
+                    <img class="user-card-image" height="50" width="50" src="http://lorempixel.com/75/75/sports/{{getUser().randomImage}}"/>
                     <div layout="column" flex class="user-card-data">
                         <span class="user-welcome" flex>{{getUser().username}}</span>
                         <md-button class="md-primary" flex ng-click="logout()">Logout</md-button>

@@ -27,7 +27,7 @@ export default {
       admin: false,
       avgReactionTime: 204,
       numberOfPokes: 222,
-      randomImage: 4
+      randomImage: 6
     }, {
       username: 'shauli',
       password: '123',

@@ -12,7 +12,7 @@
         <md-list-item class="poke-animate" ng-repeat="user in suggestedPokes | orderBy: '-date' track by user._id" flex>
             <md-card layout-padding class="post-card" layout="row">
                 <md-card-header-text layout="row" class="poke-title">
-                    <img class="user-card-image" height="50" width="50" src="https://unsplash.it/200/300?image={{user.randomImage}}"/>
+                    <img class="user-card-image" height="50" width="50" src="http://lorempixel.com/75/75/sports/{{user.randomImage}}"/>
                 </md-card-header-text>
                 <md-card-content layout="row" flex class="poke-content">
                     <div layout="column" class="poke-field">
