@@ -15,7 +15,6 @@ angular.module(MODULE_NAME)
 
       $scope.losingSearch = () => {
         let term = $scope.losingSearchTerm;
-        console.log(allLosingPokes);
         $scope.visibleLosingPokes  = allLosingPokes.filter(x => x.userSent.includes(term));
       };
 
