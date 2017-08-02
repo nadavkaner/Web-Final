@@ -42,7 +42,11 @@ angular.module(MODULE_NAME)
 
         Poke.update({id: poke._id}, updatePoke).$promise
           .then(newPoke => {
-            _.remove($scope.visibleLosingPokes , p => p._id === poke._id);
+            let oldPoke = _.remove($scope.visibleLosingPokes , p => p._id === poke._id)[0];
+            console.log(oldPoke);
+            newPoke.userSentData = oldPoke.userReceivedData;
+            newPoke.userReceivedData = oldPoke.userSentData;
+            console.log(newPoke);
             $scope.visibleWinningPokes.push(newPoke);
             socket.emit('poke', newPoke);
         });
